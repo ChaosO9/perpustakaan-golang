@@ -2,27 +2,57 @@ package forms
 
 import (
 	"encoding/json"
+	"mime/multipart"
+	"time"
 
 	"github.com/go-playground/validator/v10"
 )
 
-//UserForm ...
 type UserForm struct{}
 
-//LoginForm ...
+// UpdateMemberForm represents the form data for updating a member.
+type UpdateMemberForm struct {
+	Nama          string    `form:"nama" json:"nama"`
+	Alamat        string    `form:"alamat" json:"alamat"`
+	NomorTelepon  string    `form:"nomor_telepon" json:"nomor_telepon"`
+	Email         string    `form:"email" json:"email" binding:"email"`
+	TanggalLahir  time.Time `form:"tanggal_lahir" json:"tanggal_lahir"`
+	StatusAnggota int16     `form:"status_anggota" json:"status_anggota"`
+	Foto          string    `form:"foto" json:"foto"`
+	FotoFileName  string 	`json:"filename"`
+}
+
+type RegisterForm struct {
+	Email         string    `form:"email" json:"email" binding:"required,email"`
+	Password      string    `form:"password" json:"password" binding:"required,min=8"` // Add password validation
+	Nama          string    `form:"nama" json:"nama" binding:"required"`
+	Alamat        string    `form:"alamat" json:"alamat" binding:"required"`
+	NomorTelepon  string    `form:"nomor_telepon" json:"nomor_telepon" binding:"required"`
+	TanggalLahir  time.Time `form:"tanggal_lahir" json:"tanggal_lahir" binding:"required"`
+	Foto		  *multipart.FileHeader 	`form:"foto" binding:"omitempty"`
+	FotoFileName  string 	`json:"filename"`
+}
+
+// RegisterFormSwagger Swagger-friendly version (without file upload)
+type RegisterFormSwagger struct {
+	Email         string    `form:"email" json:"email" binding:"required,email"`
+	Password      string    `form:"password" json:"password" binding:"required,min=8"`
+	Nama          string    `form:"nama" json:"nama" binding:"required"`
+	Alamat        string    `form:"alamat" json:"alamat" binding:"required"`
+	NomorTelepon  string    `form:"nomor_telepon" json:"nomor_telepon" binding:"required"`
+	TanggalLahir  time.Time `form:"tanggal_lahir" json:"tanggal_lahir" binding:"required"`
+	StatusAnggota int16     `form:"status_anggota" json:"status_anggota" binding:"required"`
+	// Foto field omitted
+	FotoFileName string `json:"filename"`
+}
+
+
+// LoginForm represents the form data for member login.
 type LoginForm struct {
 	Email    string `form:"email" json:"email" binding:"required,email"`
-	Password string `form:"password" json:"password" binding:"required,min=3,max=50"`
+	Password string `form:"password" json:"password" binding:"required"`
 }
 
-//RegisterForm ...
-type RegisterForm struct {
-	Name     string `form:"name" json:"name" binding:"required,min=3,max=20,fullName"` //fullName rule is in validator.go
-	Email    string `form:"email" json:"email" binding:"required,email"`
-	Password string `form:"password" json:"password" binding:"required,min=3,max=50"`
-}
-
-//Name ...
 func (f UserForm) Name(tag string, errMsg ...string) (message string) {
 	switch tag {
 	case "required":

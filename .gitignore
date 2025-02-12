@@ -12,6 +12,7 @@
 .gitconfig
 .env
 cert/
+docker-compose.yaml
 
 # BUILD #
 ./gin-boilerplate

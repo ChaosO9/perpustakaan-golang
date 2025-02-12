@@ -1,6 +1,7 @@
 package models
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"os"
@@ -8,7 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Massad/gin-boilerplate/db"
+	"perpustakaan-golang/db"
+
 	jwt "github.com/golang-jwt/jwt/v4"
 	uuid "github.com/google/uuid"
 )
@@ -33,6 +35,15 @@ type AccessDetails struct {
 type Token struct {
 	AccessToken  string `json:"access_token"`
 	RefreshToken string `json:"refresh_token"`
+}
+
+type ErrorResponse struct {
+    Error string `json:"error"` // Or "message" if that's what you use
+}
+
+type TokenResponse struct {
+    AccessToken  string `json:"access_token"`
+    RefreshToken string `json:"refresh_token"`
 }
 
 //AuthModel ...
@@ -76,15 +87,15 @@ func (m AuthModel) CreateToken(userID int64) (*TokenDetails, error) {
 
 //CreateAuth ...
 func (m AuthModel) CreateAuth(userid int64, td *TokenDetails) error {
-	at := time.Unix(td.AtExpires, 0) //converting Unix to UTC(to Time object)
+	at := time.Unix(td.AtExpires, 0)
 	rt := time.Unix(td.RtExpires, 0)
 	now := time.Now()
 
-	errAccess := db.GetRedis().Set(td.AccessUUID, strconv.Itoa(int(userid)), at.Sub(now)).Err()
+	errAccess := db.GetRedis().Set(context.Background(), td.AccessUUID, strconv.Itoa(int(userid)), at.Sub(now)).Err()
 	if errAccess != nil {
 		return errAccess
 	}
-	errRefresh := db.GetRedis().Set(td.RefreshUUID, strconv.Itoa(int(userid)), rt.Sub(now)).Err()
+	errRefresh := db.GetRedis().Set(context.Background(), td.RefreshUUID, strconv.Itoa(int(userid)), rt.Sub(now)).Err()
 	if errRefresh != nil {
 		return errRefresh
 	}
@@ -124,7 +135,7 @@ func (m AuthModel) TokenValid(r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	if _, ok := token.Claims.(jwt.Claims); !ok && !token.Valid {
+	if _, ok := token.Claims.(jwt.MapClaims); !ok || !token.Valid { 
 		return err
 	}
 	return nil
@@ -156,7 +167,7 @@ func (m AuthModel) ExtractTokenMetadata(r *http.Request) (*AccessDetails, error)
 
 //FetchAuth ...
 func (m AuthModel) FetchAuth(authD *AccessDetails) (int64, error) {
-	userid, err := db.GetRedis().Get(authD.AccessUUID).Result()
+	userid, err := db.GetRedis().Get(context.Background(), authD.AccessUUID).Result() 
 	if err != nil {
 		return 0, err
 	}
@@ -166,7 +177,7 @@ func (m AuthModel) FetchAuth(authD *AccessDetails) (int64, error) {
 
 //DeleteAuth ...
 func (m AuthModel) DeleteAuth(givenUUID string) (int64, error) {
-	deleted, err := db.GetRedis().Del(givenUUID).Result()
+	deleted, err := db.GetRedis().Del(context.Background(), givenUUID).Result()
 	if err != nil {
 		return 0, err
 	}

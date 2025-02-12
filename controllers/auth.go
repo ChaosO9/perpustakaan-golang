@@ -6,8 +6,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/Massad/gin-boilerplate/forms"
-	"github.com/Massad/gin-boilerplate/models"
+	"perpustakaan-golang/forms"
+	"perpustakaan-golang/models"
+
 	"github.com/gin-gonic/gin"
 	jwt "github.com/golang-jwt/jwt/v4"
 )
@@ -18,6 +19,14 @@ type AuthController struct{}
 var authModel = new(models.AuthModel)
 
 //TokenValid ...
+// TokenValid middleware checks if the JWT token is valid.
+// @Summary Validate Token
+// @Description Validates the JWT token in the Authorization header.
+// @Tags Auth
+// @Security ApiKeyAuth
+// @Success 200 {string} string "OK"
+// @Failure 401 {object} models.ErrorResponse "Unauthorized" 
+// @Router /example [get] // Replace with an example route where this middleware is used
 func (ctl AuthController) TokenValid(c *gin.Context) {
 
 	tokenAuth, err := authModel.ExtractTokenMetadata(c.Request)
@@ -39,6 +48,18 @@ func (ctl AuthController) TokenValid(c *gin.Context) {
 }
 
 //Refresh ...
+// Refresh generates new access and refresh tokens.
+// @Summary Refresh Token
+// @Description Refresh access token
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Param request body forms.Token true "Refresh Token Request"
+// @Success 200 {object} models.TokenResponse
+// @Failure 401 {object} models.ErrorResponse
+// @Failure 406 {object} models.ErrorResponse
+// @Failure 403 {object} models.ErrorResponse 
+// @Router /token/refresh [post]
 func (ctl AuthController) Refresh(c *gin.Context) {
 	var tokenForm forms.Token
 

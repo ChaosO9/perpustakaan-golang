@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"github.com/Massad/gin-boilerplate/forms"
-	"github.com/Massad/gin-boilerplate/models"
+	"perpustakaan-golang/forms"
+	"perpustakaan-golang/models"
+	"perpustakaan-golang/utils"
 
 	"net/http"
 
@@ -22,6 +23,16 @@ func getUserID(c *gin.Context) (userID int64) {
 }
 
 //Login ...
+// Login handles user login.
+// @Summary User Login
+// @Description Logs in a user.
+// @Tags User
+// @Accept json
+// @Produce json
+// @Param login body forms.LoginForm true "Login Request"
+// @Success 200 {object} models.LoginResponse  
+// @Failure 406 {object} models.ErrorResponse
+// @Router /user/login [post]
 func (ctrl UserController) Login(c *gin.Context) {
 	var loginForm forms.LoginForm
 
@@ -41,14 +52,36 @@ func (ctrl UserController) Login(c *gin.Context) {
 }
 
 //Register ...
+// Register handles user registration.
+// @Summary User Register
+// @Description Register a new user
+// @Tags User
+// @Accept multipart/form-data
+// @Produce json
+// @Param register body forms.RegisterFormSwagger true "Register Request"
+// @Success 200 {object} models.RegisterResponse
+// @Failure 406 {object} models.ErrorResponse
+// @Failure 500 {object} models.ErrorResponse
+// @Router /user/register [post]
 func (ctrl UserController) Register(c *gin.Context) {
 	var registerForm forms.RegisterForm
 
-	if validationErr := c.ShouldBindJSON(&registerForm); validationErr != nil {
+	if validationErr := c.ShouldBind(&registerForm); validationErr != nil {
 		message := userForm.Register(validationErr)
 		c.AbortWithStatusJSON(http.StatusNotAcceptable, gin.H{"message": message})
 		return
 	}
+
+	uploadDir := "./uploads/user/"
+    registerForm.FotoFileName = "profile-placeholder.jpg"
+
+    filename, err := utils.ImageUpload(c, "foto", uploadDir) 
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
+	registerForm.FotoFileName = filename
 
 	user, err := userModel.Register(registerForm)
 	if err != nil {
@@ -60,6 +93,15 @@ func (ctrl UserController) Register(c *gin.Context) {
 }
 
 //Logout ...
+// Logout handles user logout.
+// @Summary User Logout
+// @Description Logs out a user.
+// @Tags User
+// @Security ApiKeyAuth  
+// @Success 200 {object} models.LogoutResponse
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 401 {object} models.ErrorResponse
+// @Router /user/logout [get]
 func (ctrl UserController) Logout(c *gin.Context) {
 
 	au, err := authModel.ExtractTokenMetadata(c.Request)

@@ -1,50 +1,95 @@
---
--- PostgreSQL database dump
---
+/*
+ Navicat Premium Data Transfer
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
+ Source Server         : kesehatan
+ Source Server Type    : PostgreSQL
+ Source Server Version : 140005 (140005)
+ Source Host           : localhost:5432
+ Source Catalog        : perpustakaan-golang
+ Source Schema         : public
 
---
--- Name: golang_gin_db; Type: DATABASE; Schema: -; Owner: postgres
---
-DROP DATABASE golang_gin_db;
+ Target Server Type    : PostgreSQL
+ Target Server Version : 140005 (140005)
+ File Encoding         : 65001
 
-CREATE DATABASE golang_gin_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
-
-
-ALTER DATABASE golang_gin_db OWNER TO postgres;
-
-\connect golang_gin_db
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+ Date: 10/02/2025 20:52:20
+*/
 
 
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
---
+-- ----------------------------
+-- Sequence structure for user_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."user_id_seq";
+CREATE SEQUENCE "public"."user_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
 
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+-- ----------------------------
+-- Table structure for master_buku
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."master_buku";
+CREATE TABLE "public"."master_buku" (
+  "id" uuid NOT NULL,
+  "judul" varchar(255) COLLATE "pg_catalog"."default",
+  "pengarang" varchar(255) COLLATE "pg_catalog"."default",
+  "penerbit" varchar(255) COLLATE "pg_catalog"."default",
+  "isbn" varchar(17) COLLATE "pg_catalog"."default",
+  "tahun_terbit" int8,
+  "kategori" varchar(255) COLLATE "pg_catalog"."default",
+  "deskripsi" text COLLATE "pg_catalog"."default",
+  "foto" varchar(255) COLLATE "pg_catalog"."default",
+  "jumlah_eksemplar" int8,
+  "jumlah_ketersediaan_eksemplar" int8,
+  "created_at" date,
+  "updated_at" date
+)
+;
 
+-- ----------------------------
+-- Table structure for transaksi_buku
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."transaksi_buku";
+CREATE TABLE "public"."transaksi_buku" (
+  "id" uuid NOT NULL,
+  "id_anggota" int4,
+  "id_buku" uuid,
+  "tanggal_pinjam" timestamp(6),
+  "tanggal_jatuh_tempo" timestamp(6),
+  "tanggal_kembali" timestamp(6),
+  "denda" numeric(255,0),
+  "status" int2
+)
+;
 
-CREATE FUNCTION created_at_column() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."user";
+CREATE TABLE "public"."user" (
+  "id" int4 NOT NULL DEFAULT nextval('user_id_seq'::regclass),
+  "email" varchar COLLATE "pg_catalog"."default",
+  "password" varchar COLLATE "pg_catalog"."default",
+  "nama" varchar COLLATE "pg_catalog"."default",
+  "updated_at" int4,
+  "created_at" int4,
+  "alamat" text COLLATE "pg_catalog"."default",
+  "nomor_telepon" varchar(20) COLLATE "pg_catalog"."default",
+  "tanggal_lahir" date,
+  "tanggal_join" date,
+  "status_anggota" int2,
+  "foto" varchar COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Function structure for created_at_column
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."created_at_column"();
+CREATE OR REPLACE FUNCTION "public"."created_at_column"()
+  RETURNS "pg_catalog"."trigger" AS $BODY$
 
 BEGIN
 	NEW.updated_at = EXTRACT(EPOCH FROM NOW());
@@ -52,222 +97,60 @@ BEGIN
     RETURN NEW;
 END;
 
-$$;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
 
-
-ALTER FUNCTION public.created_at_column() OWNER TO postgres;
-
---
--- TOC entry 190 (class 1255 OID 36646)
--- Name: update_at_column(); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION update_at_column() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
+-- ----------------------------
+-- Function structure for update_at_column
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."update_at_column"();
+CREATE OR REPLACE FUNCTION "public"."update_at_column"()
+  RETURNS "pg_catalog"."trigger" AS $BODY$
 
 BEGIN
     NEW.updated_at = EXTRACT(EPOCH FROM NOW());
     RETURN NEW;
 END;
 
-$$;
-
-
-ALTER FUNCTION public.update_at_column() OWNER TO postgres;
-
-
-SET search_path = public, pg_catalog;
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
---
--- Name: article; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
---
-
-CREATE TABLE article (
-    id integer NOT NULL,
-    user_id integer,
-    title character varying,
-    content text,
-    updated_at integer,
-    created_at integer
-);
-
-
-ALTER TABLE article OWNER TO postgres;
-
---
--- Name: article_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE article_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE article_id_seq OWNER TO postgres;
-
---
--- Name: article_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE article_id_seq OWNED BY article.id;
-
-
---
--- Name: user; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
---
-
-CREATE TABLE "user" (
-    id integer NOT NULL,
-    email character varying,
-    password character varying,
-    name character varying,
-    updated_at integer,
-    created_at integer
-);
-
-
-ALTER TABLE "user" OWNER TO postgres;
-
---
--- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE user_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE user_id_seq OWNER TO postgres;
-
---
--- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE user_id_seq OWNED BY "user".id;
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY article ALTER COLUMN id SET DEFAULT nextval('article_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
-
-
---
--- Data for Name: article; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY article (id, user_id, title, content, updated_at, created_at) FROM stdin;
-\.
-
-
---
--- Name: article_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('article_id_seq', 1, false);
-
-
---
--- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "user" (id, email, password, name, updated_at, created_at) FROM stdin;
-\.
-
-
---
--- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('user_id_seq', 1, false);
-
-
---
--- Name: article_id; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
---
-
-ALTER TABLE ONLY article
-    ADD CONSTRAINT article_id PRIMARY KEY (id);
-
-
---
--- Name: user_id; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
---
-
-ALTER TABLE ONLY "user"
-    ADD CONSTRAINT user_id PRIMARY KEY (id);
-
-
---
--- Name: article_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY article
-    ADD CONSTRAINT article_user_id FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- TOC entry 2284 (class 2620 OID 36647)
--- Name: article create_article_created_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER create_article_created_at BEFORE INSERT ON article FOR EACH ROW EXECUTE PROCEDURE created_at_column();
-
-
---
--- TOC entry 2286 (class 2620 OID 36653)
--- Name: user create_user_created_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER create_user_created_at BEFORE INSERT ON "user" FOR EACH ROW EXECUTE PROCEDURE created_at_column();
-
-
---
--- TOC entry 2285 (class 2620 OID 36648)
--- Name: article update_article_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER update_article_updated_at BEFORE UPDATE ON article FOR EACH ROW EXECUTE PROCEDURE update_at_column();
-
-
---
--- TOC entry 2287 (class 2620 OID 36654)
--- Name: user update_user_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER update_user_updated_at BEFORE UPDATE ON "user" FOR EACH ROW EXECUTE PROCEDURE update_at_column();
-
-
-
---
--- Name: public; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
---
--- PostgreSQL database dump complete
---
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+ALTER SEQUENCE "public"."user_id_seq"
+OWNED BY "public"."user"."id";
+SELECT setval('"public"."user_id_seq"', 1, false);
+
+-- ----------------------------
+-- Primary Key structure for table master_buku
+-- ----------------------------
+ALTER TABLE "public"."master_buku" ADD CONSTRAINT "master_buku_pkey" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Primary Key structure for table transaksi_buku
+-- ----------------------------
+ALTER TABLE "public"."transaksi_buku" ADD CONSTRAINT "transaksi_buku_pkey" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Triggers structure for table user
+-- ----------------------------
+CREATE TRIGGER "create_user_created_at" BEFORE INSERT ON "public"."user"
+FOR EACH ROW
+EXECUTE PROCEDURE "public"."created_at_column"();
+CREATE TRIGGER "update_user_updated_at" BEFORE UPDATE ON "public"."user"
+FOR EACH ROW
+EXECUTE PROCEDURE "public"."update_at_column"();
+
+-- ----------------------------
+-- Primary Key structure for table user
+-- ----------------------------
+ALTER TABLE "public"."user" ADD CONSTRAINT "user_id" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Foreign Keys structure for table transaksi_buku
+-- ----------------------------
+ALTER TABLE "public"."transaksi_buku" ADD CONSTRAINT "foreign_anggota" FOREIGN KEY ("id_anggota") REFERENCES "public"."user" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."transaksi_buku" ADD CONSTRAINT "foreign_buku" FOREIGN KEY ("id_buku") REFERENCES "public"."master_buku" ("id") ON DELETE NO ACTION ON UPDATE CASCADE;
