@@ -1,0 +1,3137 @@
+{
+	"info": {
+		"_postman_id": "07f82991-f063-4d5e-a25d-9aabbf5801af",
+		"name": "Perpustakaan Golang API",
+		"description": "API for library management system.\n\nContact Support:\n Name: API Support\n Email: support@swagger.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29990555"
+	},
+	"item": [
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get Book by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/books/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{bukuId}}"
+										}
+									]
+								},
+								"description": "Retrieve a book by its ID"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {\n    \"created_at\": \"<string>\",\n    \"deskripsi\": \"<string>\",\n    \"foto\": \"<string>\",\n    \"id\": \"<string>\",\n    \"isbn\": \"<string>\",\n    \"judul\": \"<string>\",\n    \"jumlah_eksemplar\": \"<integer>\",\n    \"jumlah_ketersediaan_eksemplar\": \"<integer>\",\n    \"kategori\": \"<string>\",\n    \"penerbit\": \"<string>\",\n    \"pengarang\": \"<string>\",\n    \"tahun_terbit\": \"<integer>\",\n    \"updated_at\": \"<string>\"\n  },\n  \"message\": \"<string>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Book",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "deskripsi",
+											"value": "Komik Sonic IDW Issue Kedua",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "isbn",
+											"value": "763786737987",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "judul",
+											"value": "Sonic IDW #2",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "jumlah_eksemplar",
+											"value": "10",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "kategori",
+											"value": "Komik",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "penerbit",
+											"value": "IDW Publisher",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "pengarang",
+											"value": "Evan S.",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "tahun_terbit",
+											"value": "2019",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "foto",
+											"type": "file",
+											"src": "postman-cloud:///1efe7d0d-337f-4b90-9bbc-c7841954e9cc"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/books/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{bukuId}}",
+											"description": "(Required) Book ID"
+										}
+									]
+								},
+								"description": "Update an existing book"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "deskripsi",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "isbn",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "judul",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "jumlah_eksemplar",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "kategori",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "penerbit",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "pengarang",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "tahun_terbit",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {},\n  \"message\": \"<string>\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "deskripsi",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "isbn",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "judul",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "jumlah_eksemplar",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "kategori",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "penerbit",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "pengarang",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "tahun_terbit",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "deskripsi",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "isbn",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "judul",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "jumlah_eksemplar",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "kategori",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "penerbit",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "pengarang",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "tahun_terbit",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Not Acceptable",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "deskripsi",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "isbn",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "judul",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "jumlah_eksemplar",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "kategori",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "penerbit",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "pengarang",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "tahun_terbit",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Acceptable",
+									"code": 406,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "deskripsi",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "isbn",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "judul",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "jumlah_eksemplar",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "kategori",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "penerbit",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "pengarang",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "tahun_terbit",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Book",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/books/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{bukuId}}",
+											"description": "(Required) Book ID"
+										}
+									]
+								},
+								"description": "Delete a book by its ID"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {},\n  \"message\": \"<string>\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/books/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"books",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get All Books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/books?page=1&limit=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Retrieve all books with pagination"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/books?page=<integer>&limit=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "<integer>",
+											"description": "Page number"
+										},
+										{
+											"key": "limit",
+											"value": "<integer>",
+											"description": "Items per page"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {\n    \"books\": [\n      {\n        \"created_at\": \"<string>\",\n        \"deskripsi\": \"<string>\",\n        \"foto\": \"<string>\",\n        \"id\": \"<string>\",\n        \"isbn\": \"<string>\",\n        \"judul\": \"<string>\",\n        \"jumlah_eksemplar\": \"<integer>\",\n        \"jumlah_ketersediaan_eksemplar\": \"<integer>\",\n        \"kategori\": \"<string>\",\n        \"penerbit\": \"<string>\",\n        \"pengarang\": \"<string>\",\n        \"tahun_terbit\": \"<integer>\",\n        \"updated_at\": \"<string>\"\n      },\n      {\n        \"created_at\": \"<string>\",\n        \"deskripsi\": \"<string>\",\n        \"foto\": \"<string>\",\n        \"id\": \"<string>\",\n        \"isbn\": \"<string>\",\n        \"judul\": \"<string>\",\n        \"jumlah_eksemplar\": \"<integer>\",\n        \"jumlah_ketersediaan_eksemplar\": \"<integer>\",\n        \"kategori\": \"<string>\",\n        \"penerbit\": \"<string>\",\n        \"pengarang\": \"<string>\",\n        \"tahun_terbit\": \"<integer>\",\n        \"updated_at\": \"<string>\"\n      }\n    ],\n    \"limit\": \"<integer>\",\n    \"page\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<p>Setting the id from the response as the bukuId environment variable</p>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    var response = pm.response.json();\r",
+									"    pm.environment.set(\"bukuId\", response.data.id);\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "deskripsi",
+									"value": "Komik Sonic IDW Rilis Pertama",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "isbn",
+									"value": "92470818748098",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "judul",
+									"value": "Sonic IDW #!",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "jumlah_eksemplar",
+									"value": "10",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "kategori",
+									"value": "Komik",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "penerbit",
+									"value": "IDW Publishing",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "pengarang",
+									"value": "Evan Stanley",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "tahun_terbit",
+									"value": "2018",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "foto",
+									"type": "file",
+									"src": "postman-cloud:///1efe7644-3dbf-4850-9a00-9dde6f92ef41"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/books",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books"
+							]
+						},
+						"description": "Add a new book"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "deskripsi",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "isbn",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "judul",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "jumlah_eksemplar",
+											"value": "<integer>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "kategori",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "penerbit",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "pengarang",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "tahun_terbit",
+											"value": "<integer>",
+											"description": "(Required) ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/books",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {\n    \"id\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"name": "Not Acceptable",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "deskripsi",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "isbn",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "judul",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "jumlah_eksemplar",
+											"value": "<integer>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "kategori",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "penerbit",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "pengarang",
+											"value": "<string>",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "tahun_terbit",
+											"value": "<integer>",
+											"description": "(Required) ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/books",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": \"<string>\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "example",
+			"item": [
+				{
+					"name": "Validate Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/example",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"example"
+							]
+						},
+						"description": "Validates the JWT token in the Authorization header."
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/example",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"example"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "<string>"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/example",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"example"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": \"<string>\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "reports",
+			"item": [
+				{
+					"name": "borrowed_books",
+					"item": [
+						{
+							"name": "Borrowed Book Reports",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/reports/borrowed_books?start_date=2025-02-10&end_date=2025-02-12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reports",
+										"borrowed_books"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2025-02-10",
+											"description": "Start date (YYYY-MM-DD)"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-02-12",
+											"description": "End date (YYYY-MM-DD)"
+										}
+									]
+								},
+								"description": "Get borrowed book reports within a date range."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reports/borrowed_books?start_date=<string>&end_date=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reports",
+												"borrowed_books"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "<string>",
+													"description": "Start date (YYYY-MM-DD)"
+												},
+												{
+													"key": "end_date",
+													"value": "<string>",
+													"description": "End date (YYYY-MM-DD)"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {},\n  \"message\": \"<string>\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reports/borrowed_books?start_date=<string>&end_date=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reports",
+												"borrowed_books"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "<string>",
+													"description": "Start date (YYYY-MM-DD)"
+												},
+												{
+													"key": "end_date",
+													"value": "<string>",
+													"description": "End date (YYYY-MM-DD)"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reports/borrowed_books?start_date=<string>&end_date=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reports",
+												"borrowed_books"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "<string>",
+													"description": "Start date (YYYY-MM-DD)"
+												},
+												{
+													"key": "end_date",
+													"value": "<string>",
+													"description": "End date (YYYY-MM-DD)"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "returned_books",
+					"item": [
+						{
+							"name": "Returned Book Reports",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/reports/returned_books?start_date=2025-02-10&end_date=2025-02-12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reports",
+										"returned_books"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2025-02-10",
+											"description": "Start date (YYYY-MM-DD)"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-02-12",
+											"description": "End date (YYYY-MM-DD)"
+										}
+									]
+								},
+								"description": "Get returned book reports within a date range."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reports/returned_books?start_date=<string>&end_date=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reports",
+												"returned_books"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "<string>",
+													"description": "Start date (YYYY-MM-DD)"
+												},
+												{
+													"key": "end_date",
+													"value": "<string>",
+													"description": "End date (YYYY-MM-DD)"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {},\n  \"message\": \"<string>\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reports/returned_books?start_date=<string>&end_date=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reports",
+												"returned_books"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "<string>",
+													"description": "Start date (YYYY-MM-DD)"
+												},
+												{
+													"key": "end_date",
+													"value": "<string>",
+													"description": "End date (YYYY-MM-DD)"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reports/returned_books?start_date=<string>&end_date=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reports",
+												"returned_books"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "<string>",
+													"description": "Start date (YYYY-MM-DD)"
+												},
+												{
+													"key": "end_date",
+													"value": "<string>",
+													"description": "End date (YYYY-MM-DD)"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "refresh",
+					"item": [
+						{
+							"name": "Refresh Token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/token/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"token",
+										"refresh"
+									]
+								},
+								"description": "Refresh access token"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/token/refresh",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"token",
+												"refresh"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"access_token\": \"<string>\",\n  \"refresh_token\": \"<string>\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/token/refresh",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"token",
+												"refresh"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/token/refresh",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"token",
+												"refresh"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Not Acceptable",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/token/refresh",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"token",
+												"refresh"
+											]
+										}
+									},
+									"status": "Not Acceptable",
+									"code": 406,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "transactions",
+			"item": [
+				{
+					"name": "borrow",
+					"item": [
+						{
+							"name": "Borrow Book",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"    var response = pm.response.json();\r",
+											"    pm.environment.set(\"borrowId\", response.data.id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id_anggota\": {{userId}},\n  \"id_buku\": \"{{bukuId}}\",\n  \"loan_duration\": \"168h\" //7 hari\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transactions/borrow",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions",
+										"borrow"
+									]
+								},
+								"description": "### Borrow Transaction\n\nBorrow a book by member and book IDs.\n\n#### Request Body\n\n- id_anggota: (object)\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\nExample response:\n\n``` json\n{\n  \"code\": \"\",\n  \"data\": {\n    \"id\": \"\",\n    \"message\": \"\"\n  },\n  \"message\": \"\"\n}\n\n ```\n\n#### Example\n\n```\nPOST {{baseUrl}}/transactions/borrow\n{\n  \"id_anggota\": {}\n}\n\n ```\n\nSet the response ID as borrowId in the environment variables.\n\nBorrow a book by member and book IDs.\n\n#### Request Body\n\n- id_anggota: (object)\n    \n\n#### Response\n\n- Status: 200\n    \n- { \"code\": 0, \"message\": \"\", \"data\": { \"message\": \"\", \"id\": \"\" }}\n    \n\n#### Example Response\n\n``` json\n{\n    \"code\": \"\",\n    \"data\": {\n        \"id\": \"\",\n        \"message\": \"\"\n    },\n    \"message\": \"\"\n}\n\n ```\n\n### Set the ID as borrowId in the environment variables."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_anggota\": \"<string>\",\n  \"id_buku\": \"<string>\",\n  \"loan_duration\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/transactions/borrow",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"transactions",
+												"borrow"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {\n    \"id\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"message\": \"<string>\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_anggota\": \"<string>\",\n  \"id_buku\": \"<string>\",\n  \"loan_duration\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/transactions/borrow",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"transactions",
+												"borrow"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_anggota\": \"<string>\",\n  \"id_buku\": \"<string>\",\n  \"loan_duration\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/transactions/borrow",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"transactions",
+												"borrow"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "return",
+					"item": [
+						{
+							"name": "Return Book",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"transaction_id\": \"{{borrowId}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transactions/return",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions",
+										"return"
+									]
+								},
+								"description": "Return a borrowed book by transaction ID."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"transaction_id\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/transactions/return",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"transactions",
+												"return"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {},\n  \"message\": \"<string>\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"transaction_id\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/transactions/return",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"transactions",
+												"return"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"transaction_id\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/transactions/return",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"transactions",
+												"return"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "User Login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								},
+								"description": "Logs in a user."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"<string>\",\n  \"token\": {\n    \"access_token\": \"<string>\",\n    \"refresh_token\": \"<string>\"\n  },\n  \"user\": {\n    \"alamat\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"email\": \"<string>\",\n    \"foto\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"nama\": \"<string>\",\n    \"nomor_telepon\": \"<string>\",\n    \"password\": \"<string>\",\n    \"status_anggota\": \"<integer>\",\n    \"tanggal_join\": \"<string>\",\n    \"tanggal_lahir\": \"<string>\",\n    \"updated_at\": \"<integer>\"\n  }\n}"
+								},
+								{
+									"name": "Not Acceptable",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "Not Acceptable",
+									"code": 406,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"item": [
+						{
+							"name": "User Logout",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"logout"
+									]
+								},
+								"description": "Logs out a user."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/user/logout",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"logout"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"<string>\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/user/logout",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"logout"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/user/logout",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"logout"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "User Register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"userId\", jsonData.user.id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "alamat",
+											"value": "Jl. Tegal Mulyorejo Baru",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "irfannoorh1@gmail.com",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "nama",
+											"value": "Irfan Noor Hidayat",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "nomor_telepon",
+											"value": "087784312184",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "status_anggota",
+											"value": "1",
+											"description": "(Required) ",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "tanggal_lahir",
+											"value": "2006-01-02T15:04:05Z",
+											"description": "(Required) ",
+											"type": "text"
+										},
+										{
+											"key": "foto",
+											"description": "Foto field omitted",
+											"type": "file",
+											"src": "postman-cloud:///1efe7644-3dbf-4850-9a00-9dde6f92ef41"
+										},
+										{
+											"key": "fotofilename",
+											"value": "aa.png",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								},
+								"description": "Register a new user"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "alamat",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "nama",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "nomor_telepon",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "status_anggota",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "tanggal_lahir",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "filename",
+													"value": "<string>",
+													"description": "Foto field omitted",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"register"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"<string>\",\n  \"user\": {\n    \"alamat\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"email\": \"<string>\",\n    \"foto\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"nama\": \"<string>\",\n    \"nomor_telepon\": \"<string>\",\n    \"password\": \"<string>\",\n    \"status_anggota\": \"<integer>\",\n    \"tanggal_join\": \"<string>\",\n    \"tanggal_lahir\": \"<string>\",\n    \"updated_at\": \"<integer>\"\n  }\n}"
+								},
+								{
+									"name": "Not Acceptable",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "alamat",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "nama",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "nomor_telepon",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "status_anggota",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "tanggal_lahir",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "filename",
+													"value": "<string>",
+													"description": "Foto field omitted",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"register"
+											]
+										}
+									},
+									"status": "Not Acceptable",
+									"code": 406,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								},
+								{
+									"name": "Internal Server Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "alamat",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "nama",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "nomor_telepon",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "status_anggota",
+													"value": "<integer>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "tanggal_lahir",
+													"value": "<string>",
+													"description": "(Required) ",
+													"type": "text"
+												},
+												{
+													"key": "filename",
+													"value": "<string>",
+													"description": "Foto field omitted",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"register"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "transactions",
+							"item": [
+								{
+									"name": "Get Transactions by Member",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/user/:id/transactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":id",
+												"transactions"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<string>",
+													"description": "(Required) Member ID (UUID)"
+												}
+											]
+										},
+										"description": "Retrieve transactions for a specific member."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/user/:id/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"user",
+														":id",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"code\": \"<integer>\",\n  \"data\": {\n    \"denda\": \"<integer>\",\n    \"id\": \"<string>\",\n    \"id_anggota\": \"<string>\",\n    \"id_buku\": \"<string>\",\n    \"status\": \"<integer>\",\n    \"tanggal_jatuh_tempo\": \"<string>\",\n    \"tanggal_kembali\": \"<string>\",\n    \"tanggal_pinjam\": \"<string>\"\n  },\n  \"message\": \"<string>\"\n}"
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/user/:id/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"user",
+														":id",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"error\": \"<string>\"\n}"
+										},
+										{
+											"name": "Internal Server Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/user/:id/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"user",
+														":id",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"error\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/api/v1"
+		}
+	]
+}
